@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">FirebaseAccounts</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dobro_dosli">Dobro dosli!</string>
+    <string name="molimo_prijavite_se">Molimo prijavite se!</string>
+    <string name="email_address">Email address…</string>
+    <string name="password">Password…</string>
+    <string name="prijava">Prijava</string>
+    <string name="zaboravljena_sifra">Zaboravljena sifra?</string>
+    <string name="registracija">Registracija</string>
+    <string name="molimo_registrujte_se">Molimo registrujte se!</string>
+    <string name="puno_ime">Puno ime…</string>
+    <string name="broj_godina">Broj godina...</string>
+    <string name="email">Email…</string>
+    <string name="passsword">Passsword…</string>
+
+</resources>

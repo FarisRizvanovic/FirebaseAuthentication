@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "397046237881",
+    "project_id": "androidfirebaseaccounts",
+    "storage_bucket": "androidfirebaseaccounts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397046237881:android:17175578fb88dccc776968",
+        "android_client_info": {
+          "package_name": "com.faris.firebaseaccounts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397046237881-48uvr6gomuuj5c7g926thor99193b9it.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAveOA5xoAI41D3D7SpndtTAUfoQdAGPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397046237881-48uvr6gomuuj5c7g926thor99193b9it.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
