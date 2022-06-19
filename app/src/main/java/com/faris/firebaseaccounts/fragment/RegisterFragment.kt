@@ -1,5 +1,6 @@
 package com.faris.firebaseaccounts.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.faris.firebaseaccounts.R
 import com.faris.firebaseaccounts.databinding.FragmentRegisterBinding
 import com.faris.firebaseaccounts.viewmodel.RegisterViewModel
@@ -41,35 +43,36 @@ class RegisterFragment : Fragment() {
             val age = binding.age.text.toString()
 
             if (fullName.isEmpty()) {
-                binding.fullName.setError("Puno ime je obavezno!")
+                binding.fullName.error = "Puno ime je obavezno!"
                 binding.fullName.requestFocus()
                 return@setOnClickListener
             }
             if (age.isEmpty()) {
-                binding.age.setError("Broj godina je obavezan!")
+                binding.age.error = "Broj godina je obavezan!"
                 binding.age.requestFocus()
                 return@setOnClickListener
             }
             if (email.isEmpty()) {
-                binding.email.setError("Email je obavezan!")
+                binding.email.error = "Email je obavezan!"
                 binding.email.requestFocus()
                 return@setOnClickListener
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                binding.email.setError("Molimo unesite vazeci email!")
+                binding.email.error = "Molimo unesite vazeci email!"
                 binding.email.requestFocus()
                 return@setOnClickListener
             }
             if (password.isEmpty()) {
-                binding.password.setError("Password je obavezan!")
+                binding.password.error = "Password je obavezan!"
                 binding.password.requestFocus()
                 return@setOnClickListener
             }
             if (password.length < 6) {
-                binding.password.setError("Password mora biti duzi od 6!")
+                binding.password.error = "Password mora biti duzi od 6!"
                 binding.password.requestFocus()
                 return@setOnClickListener
             }
+
 
             binding.progressBar.visibility = View.VISIBLE
 
@@ -78,21 +81,23 @@ class RegisterFragment : Fragment() {
             viewModel.fullName = fullName
             viewModel.age = age
 
-            viewModel.register(mAuth!!)
+            viewModel.register(mAuth)
 
         }
 
         viewModel.isRegistered.observe(viewLifecycleOwner, Observer {
             if (it) {
-                Snackbar.make(view,"Uspjesno registrovan korisnik", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(view,"Uspjesno registrovan korisnik", Snackbar.LENGTH_SHORT)
+                    .setBackgroundTint(Color.GREEN).show()
                 binding.progressBar.visibility = View.GONE
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             } else {
                 binding.progressBar.visibility = View.GONE
             }
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer {
-            Snackbar.make(view,it, Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view,it, Snackbar.LENGTH_SHORT).setBackgroundTint(Color.RED).show()
         })
 
         return view

@@ -1,5 +1,6 @@
 package com.faris.firebaseaccounts.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Patterns
 import androidx.fragment.app.Fragment
@@ -37,27 +38,31 @@ class LoginFragment : Fragment() {
 
         val viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
+        binding.forgottenPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+        }
+
         binding.loginButton.setOnClickListener {
             val email = binding.emailAdress.text.toString()
             val password = binding.password.text.toString()
 
-            if (email.isEmpty()){
-                binding.emailAdress.setError("Unesite email!")
+            if (email.isEmpty()) {
+                binding.emailAdress.error = "Unesite email!"
                 binding.emailAdress.requestFocus()
                 return@setOnClickListener
             }
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                binding.emailAdress.setError("Unesite validan email!")
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.emailAdress.error = "Unesite validan email!"
                 binding.emailAdress.requestFocus()
                 return@setOnClickListener
             }
-            if (password.isEmpty()){
-                binding.password.setError("Unesite password!")
+            if (password.isEmpty()) {
+                binding.password.error = "Unesite password!"
                 binding.password.requestFocus()
                 return@setOnClickListener
             }
-            if (password.length < 6){
-                binding.password.setError("Unesite password duzi od 6!")
+            if (password.length < 6) {
+                binding.password.error = "Unesite password duzi od 6!"
                 binding.password.requestFocus()
                 return@setOnClickListener
             }
@@ -71,15 +76,22 @@ class LoginFragment : Fragment() {
         }
 
         viewModel.isAbleToLogin.observe(viewLifecycleOwner, Observer {
-            if (it){
+            if (it) {
                 findNavController().navigate(R.id.action_loginFragment_to_userProfileFragment)
-            }else{
+            } else {
                 binding.progressBar.visibility = View.GONE
             }
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer {
-            Snackbar.make(view,it,Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view, it, Snackbar.LENGTH_SHORT).setBackgroundTint(Color.RED).show()
+        })
+
+        viewModel.emailVerified.observe(viewLifecycleOwner, Observer {
+            if (!it){
+                Snackbar.make(view, "Molimo verifikujte vas racun!", Snackbar.LENGTH_LONG).setBackgroundTint(Color.RED).show()
+                binding.progressBar.visibility = View.GONE
+            }
         })
 
         return view

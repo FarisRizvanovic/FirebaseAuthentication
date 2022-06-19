@@ -11,8 +11,14 @@
     <string name="registracija">Registracija</string>
     <string name="molimo_registrujte_se">Molimo registrujte se!</string>
     <string name="puno_ime">Puno ime…</string>
-    <string name="broj_godina">Broj godina...</string>
+    <string name="broj_godina">Broj godina…</string>
     <string name="email">Email…</string>
     <string name="passsword">Passsword…</string>
+    <string name="odjavi_se">Odjavi se</string>
+    <string name="email_adress_up">Email Address:</string>
+    <string name="puno_ime_up">Puno ime:</string>
+    <string name="broj_godina_up">Broj godina:</string>
+    <string name="vratite_svoj_racun">Vratite svoj racun!</string>
+    <string name="resetuj_sifru">Resetuj sifru</string>
 
 </resources>

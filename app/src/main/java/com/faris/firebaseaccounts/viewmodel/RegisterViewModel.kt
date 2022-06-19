@@ -23,8 +23,9 @@ class RegisterViewModel : ViewModel() {
                 FirebaseDatabase.getInstance().getReference("Users")
                     .child(FirebaseAuth.getInstance().currentUser!!.uid)
                     .setValue(user)
-                    .addOnCompleteListener {
-                        isRegistered.value = it.isSuccessful
+                    .addOnCompleteListener { task ->
+                        isRegistered.value = task.isSuccessful
+                        mAuth.currentUser!!.sendEmailVerification()
                     }
             } else {
                 isRegistered.value = false
