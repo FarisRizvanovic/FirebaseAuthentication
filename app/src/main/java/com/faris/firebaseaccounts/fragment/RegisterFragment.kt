@@ -73,7 +73,6 @@ class RegisterFragment : Fragment() {
                 return@setOnClickListener
             }
 
-
             binding.progressBar.visibility = View.VISIBLE
 
             viewModel.email = email

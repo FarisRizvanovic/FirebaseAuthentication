@@ -37,12 +37,12 @@ class ForgotPasswordFragment : Fragment() {
         binding.resetPasswordButton.setOnClickListener {
             val email = binding.emailAdress.text.toString()
             if (email.isEmpty()){
-                binding.emailAdress.setError("Unesite email")
+                binding.emailAdress.error = "Unesite email"
                 binding.emailAdress.requestFocus()
                 return@setOnClickListener
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                binding.emailAdress.setError("Unesite valian email")
+                binding.emailAdress.error = "Unesite valian email"
                 binding.emailAdress.requestFocus()
                 return@setOnClickListener
             }
